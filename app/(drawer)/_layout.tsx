@@ -5,22 +5,33 @@ import { Drawer } from 'expo-router/drawer';
 import { HeaderButton } from '../../components/HeaderButton';
 
 const DrawerLayout = () => (
-  <Drawer>
+  <Drawer
+  screenOptions={{
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  
+  }}
+  >
     <Drawer.Screen
       name="index"
       options={{
-        headerTitle: 'Home',
-        drawerLabel: 'Home',
+        headerTitle: 'Moviestart',
+        drawerLabel: 'Moviestart',
         drawerIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
       }}
     />
     <Drawer.Screen
-      name="(tabs)"
+      name="(favorites)"
       options={{
-        headerTitle: 'Tabs',
-        drawerLabel: 'Tabs',
+        headerTitle: 'Favorites',
+        drawerLabel: 'Favorites',
         drawerIcon: ({ size, color }) => (
-          <MaterialIcons name="border-bottom" size={size} color={color} />
+          <MaterialIcons name="star-outline" size={size} color={color} />
         ),
         headerRight: () => (
           <Link href="/modal" asChild>
