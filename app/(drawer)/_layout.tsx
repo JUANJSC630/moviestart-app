@@ -6,30 +6,36 @@ import { HeaderButton } from '../../components/HeaderButton';
 
 const DrawerLayout = () => (
   <Drawer
-  screenOptions={{
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  
-  }}
-  >
+    screenOptions={{
+      // styles for the header
+      headerStyle: {
+        backgroundColor: '#026873',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerShown: true,
+      // styles for the drawer
+      drawerHideStatusBarOnOpen: true,
+      drawerActiveBackgroundColor: '#026873',
+      drawerActiveTintColor: '#fff',
+      drawerLabelStyle: {
+        marginLeft: -22,
+      },
+    }}>
     <Drawer.Screen
-      name="index"
+      name="home"
       options={{
-        headerTitle: 'Moviestart',
-        drawerLabel: 'Moviestart',
+        title: 'Moviestart',
+        headerShown: false,
         drawerIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
       }}
     />
     <Drawer.Screen
-      name="(favorites)"
+      name="favorites"
       options={{
-        headerTitle: 'Favorites',
-        drawerLabel: 'Favorites',
+        title: 'Favorites',
         drawerIcon: ({ size, color }) => (
           <MaterialIcons name="star-outline" size={size} color={color} />
         ),
