@@ -14,9 +14,4 @@ This project is a mobile application developed with React Native using Expo, Tam
 
 To clone and run this application, you will need to have [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed.
 
-### Clone the repository
-
 ```bash
-
-git clone https://github.com/yourusername/your-repository.git
-cd your-repository
