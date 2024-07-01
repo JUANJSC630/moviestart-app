@@ -16,7 +16,7 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
       <Card
         elevate
         width={150}
-        height={280}
+        height={310}
         scale={0.9}
         hoverStyle={{ scale: 0.925 }}
         pressStyle={{ scale: 0.985 }}

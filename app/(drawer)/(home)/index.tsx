@@ -5,10 +5,13 @@ import { Container, Title, Main, Subtitle } from '@/tamagui.config';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { MovieCard } from '@/components/MovieCard';
-import { getTrending } from '@/services/api';
+import { getSearchResults, getTrending } from '@/services/api';
+import useDebounce from '@/hooks/useDebounce';
 
 export default function Home() {
   const [searchString, setSearchString] = useState('');
+
+  const debouncedString = useDebounce(searchString, 300);
 
   const trendingQuery = useQuery({
     queryKey: ['trending'],
@@ -16,8 +19,9 @@ export default function Home() {
   });
 
   const searchQuery = useQuery({
-    queryKey: ['search', searchString],
-    queryFn: getTrending,
+    queryKey: ['search', debouncedString],
+    queryFn: () => getSearchResults(debouncedString),
+    enabled: debouncedString.length > 0,
   });
   return (
     <Main>
@@ -57,7 +61,7 @@ export default function Home() {
           opacity: 0,
         }}
         animation="lazy">
-        Trending
+        {searchQuery.data?.results ? 'Search Results' : 'Trending'}
       </Subtitle>
       {(trendingQuery.isLoading || searchQuery.isLoading) && (
         <Spinner size="large" color={'$blue11'} />
@@ -68,7 +72,17 @@ export default function Home() {
         showsHorizontalScrollIndicator={false}
         py={40}
         contentContainerStyle={{ gap: 15, paddingLeft: 15 }}>
-        {trendingQuery.data?.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+        {searchQuery.data?.results ? (
+          <>
+            {searchQuery.data.results.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </>
+        ) : (
+          <>
+            {trendingQuery.data?.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          </>
+        )}
       </ScrollView>
     </Main>
   );

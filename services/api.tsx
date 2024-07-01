@@ -11,6 +11,8 @@ export const getTrending = async (): Promise<TrendingResults> => {
 };
 
 export const getSearchResults = async (query: string): Promise<TrendingResults> => {
+    console.log('SEARCH:', query)
+
   const response = await fetch(
     `https://api.themoviedb.org/3/search/multi?language=en-US&api_key=${api_key}&query=${encodeURIComponent(query)}`
   );
