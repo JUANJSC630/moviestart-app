@@ -2,14 +2,15 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 
-import { HeaderButton } from '../../components/HeaderButton';
+import { HeaderButton } from '@/components/HeaderButton';
+import { colorTokens } from '@tamagui/themes';
 
 const DrawerLayout = () => (
   <Drawer
     screenOptions={{
       // styles for the header
       headerStyle: {
-        backgroundColor: '#026873',
+        backgroundColor: colorTokens.dark.blue.blue11,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -18,7 +19,7 @@ const DrawerLayout = () => (
       headerShown: true,
       // styles for the drawer
       drawerHideStatusBarOnOpen: true,
-      drawerActiveBackgroundColor: '#026873',
+      drawerActiveBackgroundColor: colorTokens.dark.blue.blue11,
       drawerActiveTintColor: '#fff',
       drawerLabelStyle: {
         marginLeft: -22,

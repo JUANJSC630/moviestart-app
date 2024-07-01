@@ -1,15 +1,31 @@
-import { Stack, Tabs } from 'expo-router';
-import { ScreenContent } from '~/components/ScreenContent';
+import { DrawerToggleButton } from '@react-navigation/drawer';
+import { Stack } from 'expo-router';
+import { useTheme } from 'tamagui';
 
-import { TabBarIcon } from '~/components/TabBarIcon';
-import { Container } from '~/tamagui.config';
+export default function Home() {
+  const theme = useTheme();
 
-export default function Layout() {
   return (
-    <>
-      <Container>
-        <ScreenContent path="app/(drawer)/(home)/index.tsx" title="Moviestart" />
-      </Container>
-    </>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.blue11.get(),
+        },
+        headerTintColor: '#fff',
+      }}>
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Moviestart',
+          headerLeft: () => <DrawerToggleButton tintColor="#fff" />,
+        }}
+      />
+      <Stack.Screen
+        name="(movie)/[id]"
+        options={{
+          title: '',
+        }}
+      />
+    </Stack>
   );
 }
