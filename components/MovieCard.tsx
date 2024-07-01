@@ -15,7 +15,7 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
       asChild>
       <Card
         elevate
-        width={150}
+        width={200}
         height={310}
         scale={0.9}
         hoverStyle={{ scale: 0.925 }}
@@ -25,7 +25,7 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
             alt={movie.title}
-            style={{ width: 150, height: 210, borderRadius: 5 }}
+            style={{ width: 200, height: 240, borderRadius: 5 }}
           />
         </Card.Header>
         <Card.Footer p={8}>
