@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router';
 
 import { TabBarIcon } from '~/components/TabBarIcon';
 
-export default function TabLayout() {
+export default function Layout() {
   return (
     <Tabs
       screenOptions={{
@@ -13,14 +13,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
         }}
       />
     </Tabs>
