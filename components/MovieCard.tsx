@@ -11,26 +11,30 @@ type MovieCardProps = {
 export const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <Link
-      href={`/(drawer)/(home)/${movie.media_type === '(movie)' ? '(movie)' : '(movie)'}/${movie.id}`}
+      href={`/(drawer)/home/${movie.media_type === 'movie' ? 'movie' : 'tv'}/${movie.id}`}
       asChild>
       <Card
         elevate
         width={200}
-        height={310}
+        height={350}
         scale={0.9}
         hoverStyle={{ scale: 0.925 }}
         pressStyle={{ scale: 0.985 }}
-        animation={'bouncy'}>
+        animation={'lazy'}
+        enterStyle={{
+          opacity: 0,
+          y: 10,
+        }}>
         <Card.Header p={0}>
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
             alt={movie.title}
-            style={{ width: 200, height: 240, borderRadius: 5 }}
+            style={{ width: 200, height: 260, borderRadius: 10 }}
           />
         </Card.Header>
         <Card.Footer p={8}>
           <YStack>
-            <Text fontSize={12} color={'lightblue'}>
+            <Text fontSize={14} color={'lightblue'}>
               {movie.title || movie.name}
             </Text>
             <Paragraph theme={'alt2'}>

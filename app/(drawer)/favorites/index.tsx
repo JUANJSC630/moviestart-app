@@ -8,7 +8,7 @@ export default function Favorites() {
     <>
       <Stack.Screen options={{ title: 'Favorites' }} />
       <Container>
-        <ScreenContent path="app/(drawer)/(favorites)/index.tsx" title="Favorites" />
+        <ScreenContent path="app/(drawer)/favorites/index.tsx" title="Favorites" />
       </Container>
     </>
   );

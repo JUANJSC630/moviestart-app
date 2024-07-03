@@ -26,7 +26,7 @@ const DrawerLayout = () => (
       },
     }}>
     <Drawer.Screen
-      name="(home)"
+      name="home"
       options={{
         title: 'Moviestart',
         headerShown: false,
@@ -34,7 +34,7 @@ const DrawerLayout = () => (
       }}
     />
     <Drawer.Screen
-      name="(favorites)"
+      name="favorites"
       options={{
         title: 'Favorites',
         drawerIcon: ({ size, color }) => (

@@ -70,7 +70,7 @@ export default function Home() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        py={40}
+        py={10}
         contentContainerStyle={{ gap: 15, paddingLeft: 15 }}>
         {searchQuery.data?.results ? (
           <>

@@ -2,6 +2,10 @@ import { DrawerToggleButton } from '@react-navigation/drawer';
 import { Stack } from 'expo-router';
 import { useTheme } from 'tamagui';
 
+export const unstable_settings = {
+  initialRouteName: 'index',
+};
+
 export default function Home() {
   const theme = useTheme();
 
@@ -9,7 +13,7 @@ export default function Home() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.blue11.get(),
+          backgroundColor: theme.blue7.get(),
         },
         headerTintColor: '#fff',
       }}>
@@ -21,9 +25,17 @@ export default function Home() {
         }}
       />
       <Stack.Screen
-        name="(movie)/[id]"
+        name="movie/[id]"
         options={{
           title: '',
+          headerBackTitle: 'Back',
+        }}
+      />
+      <Stack.Screen
+        name="tv/[id]"
+        options={{
+          title: '',
+          headerBackTitle: 'Back',
         }}
       />
     </Stack>
