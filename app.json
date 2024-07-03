@@ -20,7 +20,7 @@
     "icon": "./assets/pixelcut-export.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/giphy.gif",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -36,7 +36,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.juansaldarriaga630.Tesmoviestartting"
+      "package": "com.juansaldarriaga630.moviestart"
     },
     "extra": {
       "router": {
