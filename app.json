@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Testing",
-    "slug": "Testing",
+    "name": "Moviestart",
+    "slug": "moviestart",
     "version": "1.0.0",
-    "scheme": "Testing",
+    "scheme": "moviestart",
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -17,7 +17,7 @@
       "tsconfigPaths": true
     },
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/pixelcut-export.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -29,14 +29,23 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.juansaldarriaga630.Testing"
+      "bundleIdentifier": "com.juansaldarriaga630.moviestart"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.juansaldarriaga630.Testing"
-    }
+      "package": "com.juansaldarriaga630.Tesmoviestartting"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "75f840d1-9de8-4c7a-b7bc-92763b3e99a7"
+      }
+    },
+    "owner": "juansaldarriaga630"
   }
 }
