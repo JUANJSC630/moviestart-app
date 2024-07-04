@@ -10,6 +10,8 @@ This project is a mobile application developed with React Native using Expo, Tam
 - **Tamagui**: Modern and responsive UI design.
 - **Drawer Navigation**: Intuitive and accessible navigation.
 
-## Installation
+## How to use this repository?
 
-To clone and run this application, you will need to have [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) installed.
+Just run npm install to install all dependencies and then expo prebuild to create the native projects.
+
+Then run expo run:ios or expo run:android to start the app.
