@@ -1,7 +1,7 @@
 import { View, ImageBackground } from 'react-native';
 import { MediaType } from '@/interfaces/apiresults';
 import { useQuery } from '@tanstack/react-query';
-import { getMovieDetails } from '@/services/api';
+import { getMovieDetails } from '@/api/api';
 import { H1, Text, Image, Main, ScrollView, YStack, Paragraph, Button, useTheme } from 'tamagui';
 import { useMMKVBoolean, useMMKVObject } from 'react-native-mmkv';
 import { Favorite } from '@/interfaces/favorites';
@@ -42,7 +42,7 @@ export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
 
   const movieQuery = useQuery({
     queryKey: ['movie', id],
-    queryFn: () => getMovieDetails(+id, mediaType),
+    queryFn: () => getMovieDetails(id, mediaType),
   });
   return (
     <Main>

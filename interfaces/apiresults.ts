@@ -1,4 +1,4 @@
-export interface TrendingResults {
+export interface RootResults {
   page: number;
   results: ResultItem[];
   total_pages: number;
