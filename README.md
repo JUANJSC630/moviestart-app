@@ -17,6 +17,7 @@ This project is a mobile application developed with React Native using Expo, Tam
   - **Genres**: Browse content by genres.
   - **Watch Providers**: Information about where to watch the content.
   - **User Authentication**: Allow users to log in, create favorite lists, rate movies, and more.
+- **TanStack Query**: Efficient and powerful data fetching and caching for API requests.
 
 ## How to use this repository?
 
@@ -34,22 +35,63 @@ To use the TMDb API, follow these steps:
 2. **Configure the API Key**:
    - Store the API key in a secure place, such as environment variables or a secure storage solution within the app.
 
-3. **API Requests**:
-   - Use the API key to make requests to the TMDb endpoints, such as searching for movies, getting details, and more. 
+3. **API Requests using TanStack Query**:
+   - Use the API key to make requests to the TMDb endpoints, such as searching for movies, getting details, and more.
 
-Example of making an API request using `fetch`:
+### Example of making an API request using TanStack Query:
 
-```javascript
-const API_KEY = 'YOUR_TMDB_API_KEY';
-const BASE_URL = 'https://api.themoviedb.org/3';
+1. Install TanStack Query:
 
-const fetchMovies = async (query) => {
-  try {
-    const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error('Error fetching movies:', error);
-    return [];
-  }
-};
+    ```bash
+    npm install @tanstack/react-query
+    ```
+
+2. Configure TanStack Query in your project:
+
+    ```javascript
+    import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+
+    const queryClient = new QueryClient();
+
+    const App = () => (
+      <QueryClientProvider client={queryClient}>
+        <YourComponent />
+      </QueryClientProvider>
+    );
+    ```
+
+3. Use TanStack Query to fetch data:
+
+    ```javascript
+    const API_KEY = 'YOUR_TMDB_API_KEY';
+    const BASE_URL = 'https://api.themoviedb.org/3';
+
+    const fetchMovies = async ({ queryKey }) => {
+      const query = queryKey[1];
+      const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    };
+
+    const YourComponent = () => {
+      const { data, error, isLoading } = useQuery(['movies', 'search_query'], fetchMovies);
+
+      if (isLoading) return <p>Loading...</p>;
+      if (error) return <p>Error: {error.message}</p>;
+
+      return (
+        <div>
+          {data.results.map(movie => (
+            <div key={movie.id}>
+              <h3>{movie.title}</h3>
+              <p>{movie.overview}</p>
+            </div>
+          ))}
+        </div>
+      );
+    };
+    ```
+
+By integrating the TMDb API with TanStack Query, this project provides a comprehensive and engaging user experience centered around discovering and exploring movies and TV shows.
