@@ -2,7 +2,11 @@ import { View, ImageBackground } from 'react-native';
 import { MediaType } from '@/interfaces/apiresults';
 import { useQuery } from '@tanstack/react-query';
 import { getMovieDetails } from '@/services/api';
-import { H1, Text, Image, Main, ScrollView, YStack, Paragraph } from 'tamagui';
+import { H1, Text, Image, Main, ScrollView, YStack, Paragraph, Button, useTheme } from 'tamagui';
+import { useMMKVBoolean, useMMKVObject } from 'react-native-mmkv';
+import { Favorite } from '@/interfaces/favorites';
+import { Stack } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 type DetailsPageProps = {
   id: string;
@@ -10,12 +14,51 @@ type DetailsPageProps = {
 };
 
 export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
+  const [isFavorite, setIsFavorite] = useMMKVBoolean(`${mediaType}-${id}`);
+
+  const [favorites, setFavorites] = useMMKVObject<Favorite[]>('favorites');
+
+  const theme = useTheme();
+
+  const toggleFavorite = () => {
+    const current = favorites || [];
+
+    if (!isFavorite) {
+      setFavorites([
+        ...current,
+        {
+          id,
+          mediaType,
+          name: movieQuery.data?.title || movieQuery.data?.name,
+          thumb: movieQuery.data?.poster_path!,
+        },
+      ]);
+    }else {
+      setFavorites(current.filter((fav) => fav.id !== id || fav.mediaType !== mediaType));
+    }
+
+    setIsFavorite(!isFavorite);
+  };
+
   const movieQuery = useQuery({
     queryKey: ['movie', id],
     queryFn: () => getMovieDetails(+id, mediaType),
   });
   return (
     <Main>
+      <Stack.Screen
+        options={{
+          headerRight: () => (
+            <Button unstyled onPress={toggleFavorite}>
+              <Ionicons
+                name={isFavorite ? 'heart' : 'heart-outline'}
+                size={26}
+                color={theme.blue9.get()}
+              />
+            </Button>
+          ),
+        }}
+      />
       <ScrollView>
         <ImageBackground
           style={{ width: '100%', height: 300 }}

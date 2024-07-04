@@ -1,21 +1,43 @@
-import { Tabs } from 'expo-router';
+import { DrawerToggleButton } from '@react-navigation/drawer';
+import { Stack } from 'expo-router';
+import { useTheme } from 'tamagui';
 
-import { TabBarIcon } from '@/components/TabBarIcon';
+export const unstable_settings = {
+  initialRouteName: 'index',
+};
 
-export default function Favorites() {
+export default function Home() {
+  const theme = useTheme();
+
   return (
-    <Tabs
+    <Stack
       screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: 'black',
+        headerStyle: {
+          backgroundColor: theme.blue7.get(),
+        },
+        headerTintColor: '#fff',
       }}>
-      <Tabs.Screen
+      <Stack.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+          title: 'My Favorites',
+          headerLeft: () => <DrawerToggleButton tintColor="#fff" />,
         }}
       />
-    </Tabs>
+      <Stack.Screen
+        name="movie/[id]"
+        options={{
+          title: '',
+          headerBackTitle: 'Back',
+        }}
+      />
+      <Stack.Screen
+        name="tv/[id]"
+        options={{
+          title: '',
+          headerBackTitle: 'Back',
+        }}
+      />
+    </Stack>
   );
 }

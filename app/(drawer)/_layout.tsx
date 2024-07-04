@@ -37,14 +37,8 @@ const DrawerLayout = () => (
       name="favorites"
       options={{
         title: 'Favorites',
-        drawerIcon: ({ size, color }) => (
-          <MaterialIcons name="star-outline" size={size} color={color} />
-        ),
-        headerRight: () => (
-          <Link href="/modal" asChild>
-            <HeaderButton />
-          </Link>
-        ),
+        headerShown: false,
+        drawerIcon: ({ size, color }) => <Ionicons name="heart-outline" size={size} color={color} />,
       }}
     />
   </Drawer>
