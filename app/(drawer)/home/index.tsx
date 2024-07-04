@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { MovieCard } from '@/components/MovieCard';
 import { getTvTopRate, getSearchResults, getTrending } from '@/api/api';
 import useDebounce from '@/hooks/useDebounce';
+import ParticleBackground from '@/components/ParticleBackground';
 
 export default function Home() {
   const [searchString, setSearchString] = useState('');
@@ -31,6 +32,7 @@ export default function Home() {
 
   return (
     <Main style={{ flex: 1, paddingBottom: 50 }}>
+      <ParticleBackground />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <ImageBackground
           source={{
@@ -48,7 +50,7 @@ export default function Home() {
                   y: -10,
                 }}
                 animation="quick">
-                Trending
+                Welcome to Movies
               </Title>
               <Input
                 placeholder="Search for a movie, tv show, person..."
@@ -109,7 +111,9 @@ export default function Home() {
             showsHorizontalScrollIndicator={false}
             py={10}
             contentContainerStyle={{ gap: 15, paddingLeft: 15 }}>
-            {tvTopRateQuery.data?.results.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+            {tvTopRateQuery.data?.results.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
           </ScrollView>
         </YStack>
       </ScrollView>
