@@ -33,3 +33,11 @@ export const getTvTopRate = async (): Promise<RootResults> => {
   const data = await response.json();
   return data;
 };
+
+export const getVideos = async (id: string, type: MediaType): Promise<any> => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/${type}/${id}/videos?language=en-US&api_key=${api_key}`
+  );
+  const data = await response.json();
+  return data;
+};

@@ -1,12 +1,13 @@
-import { View, ImageBackground } from 'react-native';
+import { ImageBackground } from 'react-native';
 import { MediaType } from '@/interfaces/apiresults';
 import { useQuery } from '@tanstack/react-query';
-import { getMovieDetails } from '@/api/api';
+import { getMovieDetails, getVideos } from '@/api/api';
 import { H1, Text, Image, Main, ScrollView, YStack, Paragraph, Button, useTheme } from 'tamagui';
 import { useMMKVBoolean, useMMKVObject } from 'react-native-mmkv';
 import { Favorite } from '@/interfaces/favorites';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import VideoPlayer from './VideoPlayer';
 
 type DetailsPageProps = {
   id: string;
@@ -33,7 +34,7 @@ export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
           thumb: movieQuery.data?.poster_path!,
         },
       ]);
-    }else {
+    } else {
       setFavorites(current.filter((fav) => fav.id !== id || fav.mediaType !== mediaType));
     }
 
@@ -44,8 +45,14 @@ export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
     queryKey: ['movie', id],
     queryFn: () => getMovieDetails(id, mediaType),
   });
+
+  const videosQuery = useQuery({
+    queryKey: ['videos', id],
+    queryFn: () => getVideos(id, mediaType),
+  });
+
   return (
-    <Main>
+    <Main style={{ flex: 1, paddingBottom: 50 }}>
       <Stack.Screen
         options={{
           headerRight: () => (
@@ -59,7 +66,7 @@ export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
           ),
         }}
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <ImageBackground
           style={{ width: '100%', height: 300 }}
           resizeMode="cover"
@@ -97,6 +104,16 @@ export const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
           </Paragraph>
           <Text fontSize={16}>{movieQuery.data?.overview}</Text>
         </YStack>
+        <ScrollView
+          horizontal
+          style={{
+            paddingBottom: 20,
+          }}
+          showsHorizontalScrollIndicator={false}>
+          {videosQuery.data?.results.map((video: any) => (
+            <VideoPlayer key={video.key} video={video} />
+          ))}
+        </ScrollView>
       </ScrollView>
     </Main>
   );
