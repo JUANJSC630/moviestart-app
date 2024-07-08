@@ -31,3 +31,87 @@ export enum MediaType {
   MOVIE = 'movie',
   TV = 'tv',
 }
+
+//cast tv shows
+export interface AggregateCredits {
+  cast: CastTv[]
+  crew: CrewTV[]
+  id: number;
+}
+
+//cast movies
+export interface Credits{
+cast: CastMovie[]
+crew: CrewMovie[]
+}
+
+interface CrewTV {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  jobs: Job[];
+  department: string;
+  total_episode_count: number;
+}
+
+interface CrewMovie {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  credit_id: string;
+  department: string;
+  job: string;
+}
+
+interface Job {
+  credit_id: string;
+  job: string;
+  episode_count: number;
+}
+
+export interface CastTv {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null | string;
+  roles: Role[];
+  total_episode_count: number;
+  order: number;
+  character?: string;
+}
+export interface CastMovie {
+  adult?: boolean;
+  gender?: number;
+  id: number;
+  known_for_department?: string;
+  name: string;
+  original_name?: string;
+  popularity?: number;
+  profile_path: null | string;
+  cast_id?: number;
+  character: string;
+  credit_id?: string;
+  order?: number;
+}
+
+export interface Role {
+  credit_id: string;
+  character: string;
+  episode_count: number;
+}
+
+

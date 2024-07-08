@@ -11,7 +11,7 @@ const FavoritesPage = () => {
   return (
     <Main>
       <Container>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {favorites?.length !== 0 ? (
             <>
               {favorites?.map((fav) => (

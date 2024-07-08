@@ -33,9 +33,17 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
           />
           <View h={0}>
             {isNaN(movie.vote_average) ? (
-              <PercentageCircle percentage={0} />
+              <PercentageCircle
+                percentage={0}
+                containerStyle={{ backgroundColor: 'lightblue', top: -10, left: 5 }}
+                textStyle={{ color: 'black', fontSize: 14 }}
+              />
             ) : (
-              <PercentageCircle percentage={movie.vote_average * 10} />
+              <PercentageCircle
+                percentage={movie.vote_average * 10}
+                containerStyle={{ top: -20, left: 10 }}
+                textStyle={{ color: 'white', fontSize: 14 }}
+              />
             )}
           </View>
         </Card.Header>
